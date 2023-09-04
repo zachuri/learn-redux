@@ -1,6 +1,6 @@
 'use client';
 
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface ListState {
   title: string;
@@ -13,11 +13,11 @@ export const todosSlice = createSlice({
   name: 'todolist',
   initialState,
   reducers: {
-    add: (state, action) => {
+    add: (state, action: PayloadAction<ListState>) => {
       const newItem = action.payload;
       state.push(newItem);
     },
-    remove: (state, action) => {
+    remove: (state, action: PayloadAction<number>) => {
       const idx = action.payload;
       return state.filter((_, index) => index !== idx);
     }
